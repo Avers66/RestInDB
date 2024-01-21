@@ -1,0 +1,41 @@
+GET http://localhost:8080/api/v1/clients
+X-Client-Api-Key: 12345
+
+
+GET http://localhost:8080/api/v1/orders
+X-Client-Api-Key: 12345
+
+
+POST http://localhost:8080/api/v1/orders/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "product": "keyboard2",
+  "cost": 2110
+}
+
+
+
+POST http://localhost:8080/api/v1/clients
+Content-Type: application/json
+
+{
+  "name": "client3"
+}
+
+
+DELETE http://localhost:8080/api/v1/clients/2
+
+
+
+PUT http://localhost:8080/api/v1/clients/2
+Content-Type: application/json
+
+{
+  "name": "clientRed"
+}
+
+
+
+
