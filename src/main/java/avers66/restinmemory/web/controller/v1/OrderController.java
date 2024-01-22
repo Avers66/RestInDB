@@ -1,6 +1,7 @@
 package avers66.restinmemory.web.controller.v1;
 
 import avers66.restinmemory.dto.ListOrderResponseDto;
+import avers66.restinmemory.dto.OrderFilter;
 import avers66.restinmemory.dto.OrderRequestDto;
 import avers66.restinmemory.dto.OrderResponseDto;
 import avers66.restinmemory.mapper.v1.OrderMapper;
@@ -28,6 +29,14 @@ public class OrderController {
 
     private final OrderService orderService;
     private final OrderMapper orderMapper;
+
+    @GetMapping("/filter")
+    public ResponseEntity<ListOrderResponseDto> findByFilter(OrderFilter filter) {
+        List<Order> orders = orderService.filterBy(filter);
+        ListOrderResponseDto listOrderResponseDto = orderMapper.orderListToListOrderResponseDto(orders);
+        return ResponseEntity.ok(listOrderResponseDto);
+
+    }
 
     @GetMapping
     public ResponseEntity<ListOrderResponseDto> findAll() {

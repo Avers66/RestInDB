@@ -1,5 +1,6 @@
 package avers66.restinmemory.service;
 
+import avers66.restinmemory.dto.OrderFilter;
 import avers66.restinmemory.model.Order;
 
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.Optional;
  */
 
 public interface OrderService {
+
+    List<Order> filterBy(OrderFilter filter);
+
     List<Order> findAll();
 
     Order findById(Long id);
