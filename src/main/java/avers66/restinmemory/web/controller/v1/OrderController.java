@@ -8,6 +8,7 @@ import avers66.restinmemory.mapper.v1.OrderMapper;
 import avers66.restinmemory.model.Order;
 import avers66.restinmemory.repository.OrderRepository;
 import avers66.restinmemory.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class OrderController {
     private final OrderMapper orderMapper;
 
     @GetMapping("/filter")
-    public ResponseEntity<ListOrderResponseDto> findByFilter(OrderFilter filter) {
+    public ResponseEntity<ListOrderResponseDto> findByFilter(@Valid OrderFilter filter) {
         List<Order> orders = orderService.filterBy(filter);
         ListOrderResponseDto listOrderResponseDto = orderMapper.orderListToListOrderResponseDto(orders);
         return ResponseEntity.ok(listOrderResponseDto);

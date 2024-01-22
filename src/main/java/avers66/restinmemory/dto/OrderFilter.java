@@ -1,5 +1,6 @@
 package avers66.restinmemory.dto;
 
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,6 +20,8 @@ public class OrderFilter {
 
     private Integer pageSize;
     private Integer pageNumber;
+
+    @Size(min = 3, max = 30, message = "Имя продукта должно быть больше {min} и меньше {max}")
     private String productName;
     private BigDecimal minCost;
     private BigDecimal maxCost;
