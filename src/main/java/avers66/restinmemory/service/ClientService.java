@@ -1,6 +1,7 @@
 package avers66.restinmemory.service;
 
 import avers66.restinmemory.model.Client;
+import avers66.restinmemory.model.Order;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +23,6 @@ public interface ClientService {
     Client update(Client client);
 
     void deleteById(Long id);
+
+    Client saveWithOrders(Client client, List<Order> orderList);
 }

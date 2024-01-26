@@ -18,6 +18,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @ToString
+@Builder
 @Entity(name = "'order'")
 @AllArgsConstructor
 @NoArgsConstructor

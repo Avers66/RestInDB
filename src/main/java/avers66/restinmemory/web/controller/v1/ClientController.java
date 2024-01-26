@@ -1,12 +1,10 @@
 package avers66.restinmemory.web.controller.v1;
 
-import avers66.restinmemory.dto.ClientRequestDto;
-import avers66.restinmemory.dto.ClientResponseDto;
-import avers66.restinmemory.dto.ErrorResponse;
-import avers66.restinmemory.dto.ListClientResponseDto;
+import avers66.restinmemory.dto.*;
 import avers66.restinmemory.exception.EntityNotFoundException;
 import avers66.restinmemory.mapper.v1.ClientMapper;
 import avers66.restinmemory.model.Client;
+import avers66.restinmemory.model.Order;
 import avers66.restinmemory.service.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,6 +17,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ClientController
@@ -69,6 +70,20 @@ public class ClientController {
         clientService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+
+    @PostMapping("/withorder")
+    public ResponseEntity<ClientResponseDto> saveWithOrder(@RequestBody ClientAndOrderRequestDto request) {
+        Client client = Client.builder().name(request.getName()).orderList(new ArrayList<>()).build();
+        System.out.println(client);
+        List<Order> listOrder = request.getOrders().stream().map((o) -> Order.builder().cost(o.getCost()).product(o.getProduct()).build()).toList();
+
+        Client saveClient = clientService.saveWithOrders(client, listOrder);
+
+        return  ResponseEntity.status(HttpStatus.CREATED).body(clientMapper.clientToResponse(saveClient));
+
+    }
+
 
 //    Работает только для одного контроллера. Чтобы обрабатывать ошибки централизовано во всех контроллерах,
 //    нужно использовать аннотацию @RestControllerAdvice
