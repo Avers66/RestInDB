@@ -18,6 +18,7 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     /**
+     * Загрузка дочерней сущности
      * @EntityGraph(attributePaths = {"orderList"}) будет загружать ордера при ленивой загрузке fetch=lazy
      * и при настройке spring.jpa.open-in-view = false и избежит проблемы N+1
      * @return

@@ -28,6 +28,7 @@ public class Client {
     private Long id;
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Order> orderList = new ArrayList<>();
 

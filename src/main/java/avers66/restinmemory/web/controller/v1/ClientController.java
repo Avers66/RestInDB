@@ -74,7 +74,7 @@ public class ClientController {
 
     @PostMapping("/withorder")
     public ResponseEntity<ClientResponseDto> saveWithOrder(@RequestBody ClientAndOrderRequestDto request) {
-        Client client = Client.builder().name(request.getName()).orderList(new ArrayList<>()).build();
+        Client client = Client.builder().name(request.getName()).build();
         System.out.println(client);
         List<Order> listOrder = request.getOrders().stream().map((o) -> Order.builder().cost(o.getCost()).product(o.getProduct()).build()).toList();
 
