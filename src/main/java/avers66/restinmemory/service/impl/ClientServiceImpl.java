@@ -1,5 +1,6 @@
 package avers66.restinmemory.service.impl;
 
+import avers66.restinmemory.aop.Loggable;
 import avers66.restinmemory.exception.EntityNotFoundException;
 import avers66.restinmemory.model.Client;
 import avers66.restinmemory.model.Order;
@@ -31,6 +32,7 @@ public class ClientServiceImpl implements ClientService {
     private final OrderRepository orderRepository;
 
     @Override
+    @Loggable
     public List<Client> findAll() {
         return clientRepository.findAll();
     }

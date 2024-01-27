@@ -29,6 +29,7 @@ public class Client {
     private String name;
 
     @Builder.Default
+    @ToString.Exclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Order> orderList = new ArrayList<>();
 
